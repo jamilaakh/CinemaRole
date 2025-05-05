@@ -1,151 +1,112 @@
-# CinemaRole
+#  CinemaRole
+
+**CinemaRole** est une plateforme web interactive dédiée aux passionnés de films et de séries. Elle permet aux utilisateurs de consulter des critiques, noter des œuvres, partager leurs avis et découvrir des recommandations personnalisées.
+
+## 📌 Objectifs du projet
+
+- Offrir un espace communautaire francophone dédié aux critiques de films et séries.
+- Permettre la consultation rapide d’avis fiables.
+- Proposer des recommandations basées sur les goûts des utilisateurs.
+- Centraliser les critiques, notes et préférences dans une interface moderne et intuitive.
+
+---
+
+##  Utilisateurs cibles et permissions
+
+| Type d'utilisateur     | Description                                        | Permissions principales |
+|------------------------|----------------------------------------------------|--------------------------|
+| **Visiteur non inscrit** | Navigue sans compte                              | Consulter les fiches, notes et critiques |
+| **Utilisateur régulier** | Membre inscrit passionné de cinéma               | Noter, commenter, modifier/supprimer ses critiques, ajouter aux favoris, rechercher |
+| **Administrateur**      | Staff responsable de la gestion de contenu        | Gérer les films/séries, modérer les critiques/commentaires, gérer les utilisateurs |
+
+---
+
+## ⚙ Fonctionnalités
+
+### Fonctionnalités principales (MVP)
+
+- ✅ Créer un compte / se connecter
+- ✅ Noter un film ou une série (1 à 5 étoiles)
+- ✅ Écrire / modifier / supprimer ses propres critiques
+- ✅ Rechercher un contenu (titre, genre)
+- ✅ Interface responsive (PC, tablette, mobile)
+- ✅ Ajouter / modifier / supprimer des films et séries (admin)
+- ✅ Supprimer des critiques/commentaires inappropriés (admin)
+
+### Fonctionnalités secondaires
+
+-  Ajouter aux favoris
+-  Classement par genre, note ou popularité
+-  Recommandations personnalisées
+-  Historique utilisateur
+-  Système de commentaires sur les critiques
+
+---
+
+## 🗂️ User Stories
+
+| En tant que... | Je veux... | Afin de... |
+|----------------|------------|-------------|
+| Utilisateur régulier | Noter un film | Partager mon avis avec la communauté |
+| Utilisateur régulier | Consulter des critiques | Me faire une idée avant de regarder |
+| Visiteur non inscrit | Lire les critiques d'une série | Savoir si elle m'intéresse |
+| Administrateur | Supprimer un commentaire inapproprié | Garantir une bonne modération |
+| Administrateur | Ajouter une fiche film | Enrichir la base de données |
+
+---
+
+##  Stack Technique
+
+- **Back-End** : Laravel (PHP)
+- **Front-End** : React, HTML5, CSS3, JavaScript
+- **Base de données** : MySQL
+- **IDE** : VSCode, PhpStorm (optionnel)
+- **Versioning** : Git, GitHub
+- **Design** : Figma, Canva
+- **API Tools** : Postman
+
+---
+
+##  Sécurité & Authentification
+
+- Authentification via Laravel Breeze ou Sanctum (JWT)
+- Middleware de rôles (user, admin)
+- Validation des données côté front-end et back-end
+- Protection CSRF intégrée via Laravel
+
+---
+
+##  Tests
+
+- Tests unitaires Laravel (modèles, contrôleurs)
+- Tests composants React (fonctionnels)
+- Tests UX (par retours utilisateurs)
+- Tests d’API avec Postman
+
+---
+
+##  Déploiement
+
+| Étape | Description |
+|-------|-------------|
+| Local | Développement avec XAMPP (MySQL, Laravel, React) |
+| Production | Hébergement sur 000webhost / Hostinger / OVH |
+| Monitoring | Laravel Telescope, logs |
+| Sauvegardes | Backups automatisés via hébergeur |
+
+---
+
+## 🗓️ Planification du projet
+
+| Phase              | Tâches principales                                 | Durée estimée |
+|--------------------|----------------------------------------------------|----------------|
+| Analyse            | Collecte des besoins, user stories, priorisation   | 1 jour         |
+| Conception         | BDD, wireframes, rôles, architecture               | 2 jours        |
+| Développement Front-End | Structure, pages, composants React            | 5 jours        |
+| Développement Back-End  | Auth, API REST, rôles Laravel                  | 5 jours        |
+| Tests              | Tests unitaires, UX, corrections                   | 2 jours        |
+| Déploiement        | Configuration, mise en ligne                       | 1 jour         |
+| **Total estimé**   |                                                    | **16 jours**   |
 
 
-## Table des matières
 
-* Présentation du projet
-* Problèmes à résoudre / besoins exprimés
-* Utilisateurs cibles et rôles
-* Lien avec les technologies
-* Fonctionnalités
-
-  * Utilisateur simple
-  * Administrateur
-* User Stories
-* Priorisation des fonctionnalités
-* Planification du projet
-* Outils nécessaires au développement
-* Outils nécessaires à l'exploitation
-* Contraintes techniques
-* UML
-
-## Présentation du projet
-
-**Nom du projet :** CinemaRole
-**Description :** Plateforme web interactive permettant aux utilisateurs de noter et de rédiger des critiques sur des films et des séries.
-**Objectif principal :** Offrir aux passionnés de cinéma et de séries un espace communautaire pour partager leurs avis, consulter des critiques et découvrir de nouveaux contenus recommandés.
-
-## Problèmes à résoudre / besoins exprimés
-
-* Manque de plateformes locales francophones dédiées aux critiques.
-* Difficulté à trouver des recommandations personnalisées.
-* Besoin de centraliser critiques, notes et préférences.
-
-**Attentes de l'utilisateur final :**
-
-* Accéder rapidement aux avis d’autres utilisateurs.
-* Partager ses propres critiques.
-* Découvrir des œuvres recommandées selon ses goûts.
-
-## Utilisateurs cibles et rôles
-
-| Type d'utilisateur   | Description                     | Rôles et permissions                          |
-| -------------------- | ------------------------------- | --------------------------------------------- |
-| Visiteur non inscrit | Consulte librement les contenus | Voir fiches, notes, critiques                 |
-| Utilisateur régulier | Membre inscrit                  | Compte, noter, commenter, favoris, rechercher |
-| Administrateur       | Gère la plateforme              | Gérer les films, critiques, utilisateurs      |
-
-## Lien avec les technologies
-
-* **Laravel** : Middleware, policies (`can:manage-users`, `can:edit-reviews`, etc.)
-* **React** : Routes protégées conditionnelles selon les rôles, redirections personnalisées
-
-## Fonctionnalités
-
-### Utilisateur simple
-
-* Créer un compte / Connexion
-* Consulter fiches de films/séries
-* Laisser une note (1-5 étoiles)
-* Rédiger/modifier/supprimer ses critiques
-* Ajouter aux favoris
-* Commenter
-* Rechercher des contenus
-
-### Administrateur
-
-* Ajouter/modifier/supprimer films et séries
-* Supprimer contenus inappropriés
-* Gérer les comptes utilisateurs
-
-## User Stories
-
-* En tant que **visiteur**, je veux consulter des critiques pour décider si je veux m'inscrire.
-* En tant qu'**utilisateur inscrit**, je veux noter et commenter des films/séries.
-* En tant qu'**admin**, je veux gérer les contenus pour maintenir la qualité de la plateforme.
-
-## Priorisation des fonctionnalités
-
-| Fonctionnalité              | Priorité       |
-| --------------------------- | -------------- |
-| Inscription / Connexion     | 🟢 Essentielle |
-| Notation & commentaires     | 🟢 Essentielle |
-| Recherche de contenu        | 🟢 Essentielle |
-| Gestion de profil / favoris | 🟢 Essentielle |
-| Tableau de bord admin       | 🟢 Essentielle |
-| Système de recommandations  | 🟡 Secondaire  |
-
-## Planification du projet
-
-### Liste des tâches à réaliser
-
-#### Analyse et conception (4 jours)
-
-* Création des diagrammes UML
-* Maquettes UI
-* Architecture du projet
-
-#### Développement Back-End (5 jours)
-
-* Initialisation Laravel + base de données
-* Authentification (inscription/connexion)
-* Routes API (films, critiques, utilisateurs)
-* Middleware et policies (rôles)
-
-#### Développement Front-End (5 jours)
-
-* Initialisation React (Vite)
-* Pages : Accueil, Connexion, Détail film, Dashboard
-* Connexion API, affichage conditionnel (rôles)
-
-#### Tests (2 jours)
-
-* Tests fonctionnels et unitaires (back/front)
-* Vérification des validations et sécurité
-
-#### Déploiement (2 jours)
-
-* Mise en ligne sur hébergeur
-* Tests post-déploiement
-
-## Outils nécessaires au développement
-
-* **Langages / Frameworks** : PHP (Laravel), JS (React), MySQL
-* **IDE** : VS Code
-* **Environnement local** : XAMPP
-* **Versioning** : Git + GitHub
-* **Design/UI** : Figma, Bootstrap / Tailwind CSS
-* **Icônes** : FontAwesome
-
-## Outils nécessaires à l'exploitation
-
-| Besoin                | Solution                            |
-| --------------------- | ----------------------------------- |
-| Hébergement           | 000webhost (ou Hostinger)           |
-| Monitoring & logs     | Laravel Log                         |
-| Sauvegarde de la base | Outils de sauvegarde auto/hébergeur |
-| Sécurité              | SSL/TLS, middleware, validation     |
-
-## Contraintes techniques
-
-* Back-end : Laravel
-* Front-end : React
-* Base de données : MySQL
-* Responsive : PC, tablette, smartphone
-* Hébergement local en développement, en ligne ensuite
-
-## UML
-
-* Diagramme de cas d'utilisation
-* Diagramme de classes
-* Diagramme de séquence (si nécessaire)
