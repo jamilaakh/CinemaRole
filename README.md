@@ -40,6 +40,17 @@
 -  Recommandations personnalisées
 -  Historique utilisateur
 -  Système de commentaires sur les critiques
+ ### Fonctionnalités supplémentaires avec priorités
+
+| Fonctionnalité                         | Priorité       |
+| -------------------------------------- | -------------- |
+| Gestion de profil                      | 🟢 Essentielle |
+| Recherche et filtrage avancés          | 🟢 Essentielle |
+| Envoi de propositions (films/séries)   | 🟢 Essentielle |
+| Notation/commentaire sur les critiques | 🟡 Secondaire  |
+| Tableau de bord administrateur         | 🟢 Essentielle |
+| Statistiques détaillées                | 🟠 Bonus       |
+
 
 ---
 
