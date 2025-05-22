@@ -1,53 +1,54 @@
-import React, { useState } from 'react';
-import { UserCircle } from 'lucide-react';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { MovieProvider } from './contexts/MovieContext';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import HomePage from './pages/HomePage';
+import MovieDetailsPage from './pages/MovieDetailsPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
-import AdminDashboard from './pages/AdminDashboard';
-
-// Mock user data
-const currentUser = {
-  id: '1',
-  name: 'John Doe',
-  email: 'john.doe@example.com',
-  role: 'admin', // or 'user'
-  avatar: null,
-  showPersonalInfo: true,
-};
+import AdminDashboard from './pages/admin/AdminDashboard';
+import NotFoundPage from './pages/NotFoundPage';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
-  const [page, setPage] = useState('profile'); // 'profile' or 'admin'
-  const [user, setUser] = useState(currentUser);
-
-  const updateUser = (updatedUser) => {
-    setUser(updatedUser);
-  };
-
   return (
-    <div className="app-root">
-      <Navbar 
-        user={user} 
-        onNavigate={setPage} 
-        currentPage={page} 
-      />
-      
-      <main className="app-main">
-        {page === 'profile' && (
-          <ProfilePage user={user} onUpdateUser={updateUser} />
-        )}
-        
-        {page === 'admin' && user.role === 'admin' && (
-          <AdminDashboard />
-        )}
-        
-        {page === 'admin' && user.role !== 'admin' && (
-          <div className="app-access-denied">
-            <UserCircle className="w-16 h-16" style={{ color: '#9ca3af', marginBottom: '1rem' }} />
-            <h2 className="app-access-denied-title">Access Denied</h2>
-            <p className="app-access-denied-desc">You don't have permission to access the admin dashboard.</p>
+    <Router>
+      <AuthProvider>
+        <MovieProvider>
+          <div className="flex flex-col min-h-screen bg-neutral-900 text-white">
+            <Header />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/movie/:id" element={<MovieDetailsPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route 
+                  path="/profile" 
+                  element={
+                    <ProtectedRoute>
+                      <ProfilePage />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/admin/*" 
+                  element={
+                    <ProtectedRoute adminOnly>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </main>
+            <Footer />
           </div>
-        )}
-      </main>
-    </div>
+        </MovieProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
