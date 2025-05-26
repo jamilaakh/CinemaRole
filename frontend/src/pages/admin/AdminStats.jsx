@@ -1,6 +1,5 @@
 import { BarChart2, TrendingUp, Users, Film, Star, Heart } from 'lucide-react';
 import { useMovies } from '../../contexts/MovieContext';
-import { mockUsers } from '../../data/mockData';
 
 const AdminStats = () => {
   const { movies, reviews, favorites } = useMovies();
@@ -8,7 +7,7 @@ const AdminStats = () => {
   // Calculate stats
   const totalMovies = movies.filter(m => m.type === 'movie').length;
   const totalSeries = movies.filter(m => m.type === 'series').length;
-  const totalUsers = mockUsers.length;
+  const totalUsers = JSON.parse(localStorage.getItem('users') || '[]').length;
   const totalReviews = reviews.length;
   const totalFavorites = favorites.length;
   

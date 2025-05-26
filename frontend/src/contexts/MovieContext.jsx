@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { mockMovies, mockReviews, mockGenres } from '../data/mockData';
 import { useAuth } from './AuthContext';
 
 // Removed TypeScript interface and types
@@ -14,11 +13,23 @@ export const useMovies = () => {
 };
 
 export const MovieProvider = ({ children }) => {
-  const [movies, setMovies] = useState(mockMovies);
-  const [reviews, setReviews] = useState(mockReviews);
+  // Initialize with empty arrays or load from localStorage if you want persistence
+  const [movies, setMovies] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [genres] = useState(mockGenres);
+  const [genres] = useState([]);
   const { currentUser } = useAuth();
+
+  // Example: Load movies, reviews, genres from localStorage on mount (optional)
+  useEffect(() => {
+    const storedMovies = JSON.parse(localStorage.getItem('movies') || '[]');
+    const storedReviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+    const storedGenres = JSON.parse(localStorage.getItem('genres') || '[]');
+    setMovies(storedMovies);
+    setReviews(storedReviews);
+    // If you want to allow genres to be dynamic, use setGenres(storedGenres);
+    // Otherwise, keep genres as an empty array or hardcode them here
+  }, []);
 
   // Select featured movies (high ratings)
   const featuredMovies = movies

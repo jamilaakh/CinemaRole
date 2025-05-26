@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Users, Search, UserPlus, Shield, Trash2, Edit } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { mockUsers } from '../../data/mockData';
-import { User } from '../../types';
 
 const AdminUsers = () => {
   const { currentUser } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
 
+  // Get users from localStorage
+  const users = JSON.parse(localStorage.getItem('users') || '[]');
+
   // Filter users based on search and role
-  const filteredUsers = mockUsers.filter(user => {
+  const filteredUsers = users.filter(user => {
     const matchesSearch =
       user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.email.toLowerCase().includes(searchQuery.toLowerCase());
@@ -101,6 +102,7 @@ const AdminUsers = () => {
   );
 };
 
+// --- JSX version: remove type annotation from props ---
 const UserRow = ({ user, isCurrentUser, formatDate }) => {
   return (
     <tr className="border-b border-neutral-700 hover:bg-neutral-750 transition-colors">

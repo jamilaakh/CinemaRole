@@ -20,10 +20,12 @@ const ReviewCard = ({ review, onEdit }) => {
   };
   
   const handleDelete = async () => {
-    if (confirm('Are you sure you want to delete this review?')) {
-      await deleteReview(review.id);
+    if (window.confirm('Are you sure?')) {
+      if (window.confirm('Are you sure you want to delete this review?')) {
+        await deleteReview(review.id);
+      }
+      setShowMenu(false);
     }
-    setShowMenu(false);
   };
   
   const handleEdit = () => {
