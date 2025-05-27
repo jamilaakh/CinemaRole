@@ -1,0 +1,43 @@
+.star-rating {
+  display: flex;
+}
+
+.star-rating-star {
+  padding: 0.125rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.star-rating-star.read-only {
+  cursor: default;
+}
+
+.star-rating-star svg {
+  transition: color 0.2s, fill 0.2s;
+  display: block;
+}
+
+.star-rating-star.sm svg {
+  width: 1rem;
+  height: 1rem;
+}
+.star-rating-star.md svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.star-rating-star.lg svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.star-rating-star.filled svg {
+  color: #facc15;
+  fill: #facc15;
+}
+
+.star-rating-star.unfilled svg {
+  color: #9ca3af;
+  fill: none;
+}

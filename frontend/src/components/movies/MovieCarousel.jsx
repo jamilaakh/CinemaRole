@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import MovieCard from './MovieCard';
+import './MovieCarousel.css';
 
-// Removed TypeScript interface and types
 const MovieCarousel = ({ title, movies, featured = false }) => {
   const [startIndex, setStartIndex] = useState(0);
 
@@ -39,20 +39,20 @@ const MovieCarousel = ({ title, movies, featured = false }) => {
   const showRightButton = startIndex < movies.length - visibleCount;
 
   return (
-    <div className="mb-10">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl md:text-2xl font-bold text-white">{title}</h2>
+    <div className="movie-carousel">
+      <div className="movie-carousel-header">
+        <h2 className="movie-carousel-title">{title}</h2>
       </div>
 
-      <div className="relative group">
+      <div className="movie-carousel-relative movie-carousel-group">
         {/* Left Navigation Button */}
         {showLeftButton && (
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-5"
+            className="movie-carousel-btn movie-carousel-btn-left"
             aria-label="Previous"
           >
-            <ChevronLeft className="h-6 w-6 text-white" />
+            <ChevronLeft />
           </button>
         )}
 
@@ -60,23 +60,23 @@ const MovieCarousel = ({ title, movies, featured = false }) => {
         {showRightButton && (
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -mr-5"
+            className="movie-carousel-btn movie-carousel-btn-right"
             aria-label="Next"
           >
-            <ChevronRight className="h-6 w-6 text-white" />
+            <ChevronRight />
           </button>
         )}
 
         {/* Movie Cards Container */}
-        <div className="overflow-hidden">
+        <div className="movie-carousel-overflow">
           <motion.div
-            className="flex"
+            className="movie-carousel-motion"
             initial={false}
             animate={{ x: `calc(-${startIndex * 100}% / ${visibleCount})` }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           >
             <div
-              className={`grid grid-flow-col auto-cols-fr gap-4`}
+              className="movie-carousel-grid"
               style={{ width: `calc(${movies.length * 100}% / ${visibleCount})` }}
             >
               {movies.map(movie => (

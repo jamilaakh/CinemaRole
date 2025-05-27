@@ -12,14 +12,15 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
+
 function App() {
   return (
     <Router>
       <AuthProvider>
         <MovieProvider>
-          <div className="flex flex-col min-h-screen bg-neutral-900 text-white">
+          <div className="app-root">
             <Header />
-            <main className="flex-grow">
+            <main className="app-main">
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/movie/:id" element={<MovieDetailsPage />} />

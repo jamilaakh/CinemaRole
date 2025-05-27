@@ -8,6 +8,7 @@ import ReviewCard from '../components/reviews/ReviewCard';
 import ReviewForm from '../components/reviews/ReviewForm';
 import StarRating from '../components/reviews/StarRating';
 import MovieCarousel from '../components/movies/MovieCarousel';
+import './MovieDetailsPage.css';
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -18,13 +19,12 @@ const MovieDetailsPage = () => {
   const movie = getMovieById(movieId);
   const reviews = getReviewsByMovieId(movieId);
   const userReview = getUserReviewForMovie(movieId);
-  
+
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [isEditingReview, setIsEditingReview] = useState(false);
   const isFav = isFavorite(movieId);
 
   useEffect(() => {
-    // Redirect if movie not found
     if (!movie) {
       navigate('/not-found');
     }
@@ -43,7 +43,6 @@ const MovieDetailsPage = () => {
       navigate('/login');
       return;
     }
-    
     setIsEditingReview(false);
     setShowReviewForm(true);
   };
@@ -62,38 +61,35 @@ const MovieDetailsPage = () => {
       navigate('/login');
       return;
     }
-    
     toggleFavorite(movieId);
   };
 
-  // Filter out similar movies (excluding current movie)
   const similarMovies = popularMovies
-    .filter(m => 
-      m.id !== movie.id && 
+    .filter(m =>
+      m.id !== movie.id &&
       m.genres.some(g => movie.genres.includes(g))
     )
     .slice(0, 10);
 
   return (
-    <div className="pt-16">
+    <div className="movie-details-bg">
       {/* Hero Section */}
-      <div className="relative">
+      <div className="movie-details-hero">
         {/* Background */}
-        <div className="absolute inset-0 h-[60vh] md:h-[70vh] bg-black/30">
+        <div className="movie-details-hero-bg">
           <img
             src={movie.backdropUrl}
             alt={movie.title}
-            className="w-full h-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/60 to-transparent"></div>
+          <div className="movie-details-hero-gradient"></div>
         </div>
-        
+
         {/* Content */}
-        <div className="container mx-auto px-4 pt-[20vh] md:pt-[25vh] pb-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-start gap-8">
+        <div className="movie-details-container">
+          <div className="movie-details-row">
             {/* Poster */}
-            <motion.div 
-              className="hidden md:block w-64 rounded-lg overflow-hidden shadow-xl"
+            <motion.div
+              className="movie-details-poster"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -101,104 +97,90 @@ const MovieDetailsPage = () => {
               <img
                 src={movie.posterUrl}
                 alt={movie.title}
-                className="w-full h-auto"
               />
             </motion.div>
-            
+
             {/* Details */}
-            <motion.div 
-              className="flex-1"
+            <motion.div
+              className="movie-details-main"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="movie-details-title">
                 {movie.title}
               </h1>
-              
+
               {/* Meta Info */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 text-sm md:text-base">
-                <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-1 text-gray-400" />
-                  <span className="text-gray-300">{movie.releaseYear}</span>
+              <div className="movie-details-meta">
+                <div className="movie-details-meta-item">
+                  <Calendar className="movie-details-meta-icon" />
+                  <span>{movie.releaseYear}</span>
                 </div>
-                
-                <div className="flex items-center">
-                  <Film className="h-4 w-4 mr-1 text-gray-400" />
-                  <span className="text-gray-300 capitalize">{movie.type}</span>
+                <div className="movie-details-meta-item">
+                  <Film className="movie-details-meta-icon" />
+                  <span className="capitalize">{movie.type}</span>
                 </div>
-                
                 {movie.duration > 0 && (
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-1 text-gray-400" />
-                    <span className="text-gray-300">{formatDuration(movie.duration)}</span>
+                  <div className="movie-details-meta-item">
+                    <Clock className="movie-details-meta-icon" />
+                    <span>{formatDuration(movie.duration)}</span>
                   </div>
                 )}
-                
-                <div className="flex items-center">
-                  <Star className="h-4 w-4 mr-1 text-yellow-500 fill-yellow-500" />
-                  <span className="text-white font-medium">{movie.rating}</span>
-                  <span className="text-gray-400 ml-1">({movie.reviewCount})</span>
+                <div className="movie-details-meta-item">
+                  <Star className="movie-details-meta-icon star" />
+                  <span className="movie-details-meta-rating">{movie.rating}</span>
+                  <span className="movie-details-meta-count">({movie.reviewCount})</span>
                 </div>
               </div>
-              
+
               {/* Genres */}
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="movie-details-genres">
                 {movie.genres.map((genre, index) => (
                   <span
                     key={index}
-                    className="bg-neutral-800 text-gray-300 px-3 py-1 text-sm rounded-full"
+                    className="movie-details-genre"
                   >
                     {genre}
                   </span>
                 ))}
               </div>
-              
+
               {/* Synopsis */}
-              <div className="mb-6">
-                <h2 className="text-xl font-semibold text-white mb-2">Synopsis</h2>
-                <p className="text-gray-300">{movie.synopsis}</p>
+              <div className="movie-details-section">
+                <h2 className="movie-details-section-title">Synopsis</h2>
+                <div className="movie-details-section-content">{movie.synopsis}</div>
               </div>
-              
+
               {/* Director & Cast */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <h2 className="text-xl font-semibold text-white mb-2">Director</h2>
-                  <p className="text-gray-300">{movie.director}</p>
-                </div>
-                
-                <div>
-                  <h2 className="text-xl font-semibold text-white mb-2">Cast</h2>
-                  <div className="flex flex-wrap gap-2">
-                    {movie.cast.map((actor, index) => (
-                      <span key={index} className="text-gray-300">
-                        {actor}{index < movie.cast.length - 1 ? ', ' : ''}
-                      </span>
-                    ))}
-                  </div>
+              <div className="movie-details-section">
+                <div className="movie-details-section-title">Director</div>
+                <div className="movie-details-section-content">{movie.director}</div>
+              </div>
+              <div className="movie-details-section">
+                <div className="movie-details-section-title">Cast</div>
+                <div className="movie-details-cast-list">
+                  {movie.cast.map((actor, index) => (
+                    <span key={index}>{actor}{index < movie.cast.length - 1 ? ', ' : ''}</span>
+                  ))}
                 </div>
               </div>
-              
+
               {/* Actions */}
-              <div className="flex flex-wrap gap-3">
+              <div className="movie-details-actions">
                 <button
                   onClick={handleToggleFavorite}
-                  className={`flex items-center ${
-                    isFav 
-                      ? 'bg-red-600 hover:bg-red-700' 
-                      : 'bg-neutral-800 hover:bg-neutral-700'
-                  } text-white px-4 py-2 rounded-md transition-colors`}
+                  className={`movie-details-action-btn heart${isFav ? ' red' : ''}`}
                 >
-                  <Heart className={`h-5 w-5 mr-2 ${isFav ? 'fill-white' : ''}`} />
+                  <Heart className="movie-details-action-icon" />
                   <span>{isFav ? 'Remove from Favorites' : 'Add to Favorites'}</span>
                 </button>
-                
                 {!userReview && (
                   <button
                     onClick={handleWriteReview}
-                    className="flex items-center bg-neutral-800 hover:bg-neutral-700 text-white px-4 py-2 rounded-md transition-colors"
+                    className="movie-details-action-btn"
                   >
-                    <PenSquare className="h-5 w-5 mr-2" />
+                    <PenSquare className="movie-details-action-icon" />
                     <span>Write a Review</span>
                   </button>
                 )}
@@ -207,16 +189,16 @@ const MovieDetailsPage = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Reviews Section */}
-      <div className="container mx-auto px-4 py-10">
-        <h2 className="text-2xl font-bold text-white mb-6">
+      <div className="movie-details-reviews-section">
+        <h2 className="movie-details-reviews-title">
           Reviews
-          <span className="text-gray-400 text-lg font-normal ml-2">
+          <span className="movie-details-reviews-count">
             ({reviews.length})
           </span>
         </h2>
-        
+
         {/* User Review Form */}
         {isAuthenticated && showReviewForm && (
           <ReviewForm
@@ -226,15 +208,15 @@ const MovieDetailsPage = () => {
             onSuccess={handleReviewSuccess}
           />
         )}
-        
+
         {/* User's Review */}
         {isAuthenticated && userReview && !showReviewForm && (
           <div className="mb-6">
-            <div className="flex justify-between items-center mb-3">
-              <h3 className="text-xl font-semibold text-white">Your Review</h3>
+            <div className="movie-details-user-review-header">
+              <h3 className="movie-details-section-title">Your Review</h3>
               <button
                 onClick={handleEditReview}
-                className="text-red-500 hover:text-red-400 transition-colors text-sm"
+                className="movie-details-user-review-edit-btn"
               >
                 Edit Review
               </button>
@@ -242,16 +224,15 @@ const MovieDetailsPage = () => {
             <ReviewCard review={userReview} onEdit={handleEditReview} />
           </div>
         )}
-        
+
         {/* Other Reviews */}
         {reviews.length > 0 ? (
           <div>
             {isAuthenticated && userReview && (
-              <h3 className="text-xl font-semibold text-white mb-3">
+              <h3 className="movie-details-other-reviews-title">
                 Other Reviews
               </h3>
             )}
-            
             <div>
               {reviews
                 .filter(review => !userReview || review.id !== userReview.id)
@@ -261,24 +242,26 @@ const MovieDetailsPage = () => {
             </div>
           </div>
         ) : (
-          <div className="bg-neutral-800 rounded-lg p-8 text-center">
-            <User className="h-16 w-16 mx-auto text-gray-600 mb-4" />
-            <h3 className="text-xl font-semibold text-white mb-2">No Reviews Yet</h3>
-            <p className="text-gray-400 mb-4">Be the first to share your thoughts on this title.</p>
+          <div className="movie-details-empty-reviews">
+            <User className="movie-details-empty-icon" />
+            <div className="movie-details-empty-title">No Reviews Yet</div>
+            <div className="movie-details-empty-desc">
+              Be the first to share your thoughts on this title.
+            </div>
             {isAuthenticated ? (
               !userReview && (
                 <button
                   onClick={handleWriteReview}
-                  className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors"
+                  className="movie-details-empty-btn"
                 >
-                  <PenSquare className="h-5 w-5 mr-2" />
+                  <PenSquare className="movie-details-action-icon" />
                   <span>Write a Review</span>
                 </button>
               )
             ) : (
               <button
                 onClick={() => navigate('/login')}
-                className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors"
+                className="movie-details-empty-btn"
               >
                 <span>Sign In to Review</span>
               </button>
@@ -286,10 +269,10 @@ const MovieDetailsPage = () => {
           </div>
         )}
       </div>
-      
+
       {/* Similar Movies */}
       {similarMovies.length > 0 && (
-        <div className="container mx-auto px-4 py-8">
+        <div className="movie-details-similar-section">
           <MovieCarousel
             title="You Might Also Like"
             movies={similarMovies}

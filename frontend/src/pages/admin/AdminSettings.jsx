@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Settings, Save, Globe, Bell, Shield, Mail } from 'lucide-react';
+import './AdminSettings.css';
 
 const AdminSettings = () => {
   const [generalSettings, setGeneralSettings] = useState({
@@ -18,7 +19,6 @@ const AdminSettings = () => {
     adminEmail: 'admin@cinemarole.com',
   });
 
-  // --- JSX version: remove type annotations ---
   const handleGeneralSettingsChange = (e) => {
     const { name, value, type, checked } = e.target;
     setGeneralSettings(prev => ({
@@ -41,23 +41,22 @@ const AdminSettings = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, this would save the settings to the backend
     alert('Settings saved successfully!');
   };
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">Admin Settings</h1>
+      <h1 className="admin-settings-title">Admin Settings</h1>
       <form onSubmit={handleSubmit}>
         {/* General Settings */}
-        <div className="bg-neutral-800 rounded-lg overflow-hidden shadow-md mb-6">
-          <div className="p-4 border-b border-neutral-700 flex items-center">
-            <Globe className="h-5 w-5 text-blue-500 mr-2" />
-            <h2 className="text-lg font-semibold text-white">General Settings</h2>
+        <div className="admin-settings-form-section">
+          <div className="admin-settings-section-header">
+            <Globe style={{ color: '#3b82f6' }} />
+            <h2 className="admin-settings-section-title">General Settings</h2>
           </div>
-          <div className="p-6 space-y-4">
+          <div className="admin-settings-section-content">
             <div>
-              <label htmlFor="siteName" className="block text-sm font-medium text-gray-300 mb-1">
+              <label htmlFor="siteName" className="admin-settings-label">
                 Site Name
               </label>
               <input
@@ -66,11 +65,11 @@ const AdminSettings = () => {
                 name="siteName"
                 value={generalSettings.siteName}
                 onChange={handleGeneralSettingsChange}
-                className="w-full bg-neutral-700 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="admin-settings-input"
               />
             </div>
             <div>
-              <label htmlFor="siteDescription" className="block text-sm font-medium text-gray-300 mb-1">
+              <label htmlFor="siteDescription" className="admin-settings-label">
                 Site Description
               </label>
               <textarea
@@ -79,11 +78,11 @@ const AdminSettings = () => {
                 value={generalSettings.siteDescription}
                 onChange={handleGeneralSettingsChange}
                 rows={3}
-                className="w-full bg-neutral-700 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="admin-settings-textarea"
               ></textarea>
             </div>
             <div>
-              <label htmlFor="maxReviewLength" className="block text-sm font-medium text-gray-300 mb-1">
+              <label htmlFor="maxReviewLength" className="admin-settings-label">
                 Maximum Review Length (characters)
               </label>
               <input
@@ -94,64 +93,64 @@ const AdminSettings = () => {
                 onChange={handleGeneralSettingsChange}
                 min={100}
                 max={10000}
-                className="w-full bg-neutral-700 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="admin-settings-input"
               />
             </div>
-            <div className="flex items-center">
+            <div className="admin-settings-checkbox-row">
               <input
                 type="checkbox"
                 id="allowGuestReviews"
                 name="allowGuestReviews"
                 checked={generalSettings.allowGuestReviews}
                 onChange={handleGeneralSettingsChange}
-                className="h-4 w-4 text-red-600 focus:ring-red-600 border-gray-600 rounded"
+                className="admin-settings-checkbox"
               />
-              <label htmlFor="allowGuestReviews" className="ml-2 block text-sm text-gray-300">
+              <label htmlFor="allowGuestReviews" className="admin-settings-checkbox-label">
                 Allow guest reviews (without registration)
               </label>
             </div>
-            <div className="flex items-center">
+            <div className="admin-settings-checkbox-row">
               <input
                 type="checkbox"
                 id="requireEmailVerification"
                 name="requireEmailVerification"
                 checked={generalSettings.requireEmailVerification}
                 onChange={handleGeneralSettingsChange}
-                className="h-4 w-4 text-red-600 focus:ring-red-600 border-gray-600 rounded"
+                className="admin-settings-checkbox"
               />
-              <label htmlFor="requireEmailVerification" className="ml-2 block text-sm text-gray-300">
+              <label htmlFor="requireEmailVerification" className="admin-settings-checkbox-label">
                 Require email verification for new users
               </label>
             </div>
-            <div className="flex items-center">
+            <div className="admin-settings-checkbox-row">
               <input
                 type="checkbox"
                 id="moderationEnabled"
                 name="moderationEnabled"
                 checked={generalSettings.moderationEnabled}
                 onChange={handleGeneralSettingsChange}
-                className="h-4 w-4 text-red-600 focus:ring-red-600 border-gray-600 rounded"
+                className="admin-settings-checkbox"
               />
-              <label htmlFor="moderationEnabled" className="ml-2 block text-sm text-gray-300">
+              <label htmlFor="moderationEnabled" className="admin-settings-checkbox-label">
                 Enable content moderation for reviews
               </label>
             </div>
           </div>
         </div>
         {/* Email Notification Settings */}
-        <div className="bg-neutral-800 rounded-lg overflow-hidden shadow-md mb-6">
-          <div className="p-4 border-b border-neutral-700 flex items-center">
-            <Bell className="h-5 w-5 text-yellow-500 mr-2" />
-            <h2 className="text-lg font-semibold text-white">Email Notifications</h2>
+        <div className="admin-settings-form-section">
+          <div className="admin-settings-section-header">
+            <Bell style={{ color: '#facc15' }} />
+            <h2 className="admin-settings-section-title">Email Notifications</h2>
           </div>
-          <div className="p-6 space-y-4">
+          <div className="admin-settings-section-content">
             <div>
-              <label htmlFor="adminEmail" className="block text-sm font-medium text-gray-300 mb-1">
+              <label htmlFor="adminEmail" className="admin-settings-label">
                 Admin Email Address
               </label>
-              <div className="flex">
-                <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-neutral-600 bg-neutral-700 text-gray-400">
-                  <Mail className="h-4 w-4" />
+              <div className="admin-settings-email-input-row">
+                <span className="admin-settings-email-prefix">
+                  <Mail style={{ width: '1rem', height: '1rem' }} />
                 </span>
                 <input
                   type="email"
@@ -159,85 +158,85 @@ const AdminSettings = () => {
                   name="adminEmail"
                   value={emailSettings.adminEmail}
                   onChange={handleEmailSettingsChange}
-                  className="w-full bg-neutral-700 text-white px-4 py-2 rounded-r-md focus:outline-none focus:ring-2 focus:ring-red-600"
+                  className="admin-settings-email-input"
                 />
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="admin-settings-checkbox-row">
               <input
                 type="checkbox"
                 id="notifyOnNewReviews"
                 name="notifyOnNewReviews"
                 checked={emailSettings.notifyOnNewReviews}
                 onChange={handleEmailSettingsChange}
-                className="h-4 w-4 text-red-600 focus:ring-red-600 border-gray-600 rounded"
+                className="admin-settings-checkbox"
               />
-              <label htmlFor="notifyOnNewReviews" className="ml-2 block text-sm text-gray-300">
+              <label htmlFor="notifyOnNewReviews" className="admin-settings-checkbox-label">
                 Notify when new reviews are submitted
               </label>
             </div>
-            <div className="flex items-center">
+            <div className="admin-settings-checkbox-row">
               <input
                 type="checkbox"
                 id="notifyOnNewUsers"
                 name="notifyOnNewUsers"
                 checked={emailSettings.notifyOnNewUsers}
                 onChange={handleEmailSettingsChange}
-                className="h-4 w-4 text-red-600 focus:ring-red-600 border-gray-600 rounded"
+                className="admin-settings-checkbox"
               />
-              <label htmlFor="notifyOnNewUsers" className="ml-2 block text-sm text-gray-300">
+              <label htmlFor="notifyOnNewUsers" className="admin-settings-checkbox-label">
                 Notify when new users register
               </label>
             </div>
-            <div className="flex items-center">
+            <div className="admin-settings-checkbox-row">
               <input
                 type="checkbox"
                 id="notifyOnReports"
                 name="notifyOnReports"
                 checked={emailSettings.notifyOnReports}
                 onChange={handleEmailSettingsChange}
-                className="h-4 w-4 text-red-600 focus:ring-red-600 border-gray-600 rounded"
+                className="admin-settings-checkbox"
               />
-              <label htmlFor="notifyOnReports" className="ml-2 block text-sm text-gray-300">
+              <label htmlFor="notifyOnReports" className="admin-settings-checkbox-label">
                 Notify when content is reported
               </label>
             </div>
           </div>
         </div>
         {/* Security Settings */}
-        <div className="bg-neutral-800 rounded-lg overflow-hidden shadow-md mb-6">
-          <div className="p-4 border-b border-neutral-700 flex items-center">
-            <Shield className="h-5 w-5 text-green-500 mr-2" />
-            <h2 className="text-lg font-semibold text-white">Security Settings</h2>
+        <div className="admin-settings-form-section">
+          <div className="admin-settings-section-header">
+            <Shield style={{ color: '#22c55e' }} />
+            <h2 className="admin-settings-section-title">Security Settings</h2>
           </div>
-          <div className="p-6">
-            <p className="text-gray-400 mb-4">
+          <div className="admin-settings-section-content">
+            <p className="admin-settings-security-info">
               Security settings are managed through the main application configuration for enhanced protection.
               Please contact the system administrator to modify security parameters.
             </p>
-            <div className="bg-neutral-700 rounded-md p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-300">Two-factor authentication</span>
-                <span className="text-green-500 text-sm">Enabled</span>
+            <div className="admin-settings-security-box">
+              <div className="admin-settings-security-row">
+                <span className="admin-settings-security-label">Two-factor authentication</span>
+                <span className="admin-settings-security-value">Enabled</span>
               </div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-gray-300">Password policy</span>
-                <span className="text-green-500 text-sm">Strong</span>
+              <div className="admin-settings-security-row">
+                <span className="admin-settings-security-label">Password policy</span>
+                <span className="admin-settings-security-value">Strong</span>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-gray-300">API access control</span>
-                <span className="text-green-500 text-sm">Restricted</span>
+              <div className="admin-settings-security-row" style={{ marginBottom: 0 }}>
+                <span className="admin-settings-security-label">API access control</span>
+                <span className="admin-settings-security-value">Restricted</span>
               </div>
             </div>
           </div>
         </div>
         {/* Submit Button */}
-        <div className="flex justify-end">
+        <div className="admin-settings-submit-row">
           <button
             type="submit"
-            className="flex items-center bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md transition-colors"
+            className="admin-settings-submit-btn"
           >
-            <Save className="h-5 w-5 mr-2" />
+            <Save style={{ width: '1.25rem', height: '1.25rem' }} />
             <span>Save Settings</span>
           </button>
         </div>

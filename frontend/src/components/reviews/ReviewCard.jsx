@@ -4,6 +4,7 @@ import { Trash2, Edit, ThumbsUp, ThumbsDown, MoreVertical } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useMovies } from '../../contexts/MovieContext';
 import StarRating from './StarRating';
+import './ReviewCard.css';
 
 const ReviewCard = ({ review, onEdit }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -35,61 +36,61 @@ const ReviewCard = ({ review, onEdit }) => {
 
   return (
     <motion.div 
-      className="bg-neutral-800 rounded-lg p-5 mb-4 shadow-md"
+      className="review-card"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex justify-between items-start mb-3">
+      <div className="review-card-header">
         {/* User Info */}
-        <div className="flex items-center">
+        <div className="review-card-user">
           {review.userAvatar ? (
             <img 
               src={review.userAvatar} 
               alt={review.userName}
-              className="w-10 h-10 rounded-full mr-3 object-cover"
+              className="review-card-avatar-img"
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center mr-3">
-              <span className="text-lg font-semibold text-neutral-300">
+            <div className="review-card-avatar-placeholder">
+              <span className="review-card-avatar-initial">
                 {review.userName.charAt(0)}
               </span>
             </div>
           )}
-          <div>
-            <div className="text-white font-semibold">{review.userName}</div>
-            <div className="text-sm text-gray-400">{formatDate(review.createdAt)}</div>
+          <div className="review-card-user-info">
+            <div className="review-card-user-name">{review.userName}</div>
+            <div className="review-card-date">{formatDate(review.createdAt)}</div>
           </div>
         </div>
         
         {/* Actions */}
         {(canDelete || canEdit) && (
-          <div className="relative">
+          <div className="review-card-actions">
             <button 
               onClick={() => setShowMenu(!showMenu)}
-              className="text-gray-400 hover:text-white transition-colors p-1"
+              className="review-card-action-btn"
               aria-label="Review options"
             >
-              <MoreVertical className="h-5 w-5" />
+              <MoreVertical style={{ height: '1.25rem', width: '1.25rem' }} />
             </button>
             
             {showMenu && (
-              <div className="absolute right-0 mt-2 w-36 bg-neutral-900 rounded-md shadow-lg overflow-hidden z-10">
+              <div className="review-card-menu">
                 {canEdit && (
                   <button
                     onClick={handleEdit}
-                    className="flex w-full items-center px-4 py-2 text-sm text-white hover:bg-neutral-800 transition-colors"
+                    className="review-card-menu-btn"
                   >
-                    <Edit className="h-4 w-4 mr-2" />
+                    <Edit style={{ height: '1rem', width: '1rem', marginRight: '0.5rem' }} />
                     <span>Edit</span>
                   </button>
                 )}
                 {canDelete && (
                   <button
                     onClick={handleDelete}
-                    className="flex w-full items-center px-4 py-2 text-sm text-red-500 hover:bg-neutral-800 transition-colors"
+                    className="review-card-menu-btn delete"
                   >
-                    <Trash2 className="h-4 w-4 mr-2" />
+                    <Trash2 style={{ height: '1rem', width: '1rem', marginRight: '0.5rem' }} />
                     <span>Delete</span>
                   </button>
                 )}
@@ -100,21 +101,21 @@ const ReviewCard = ({ review, onEdit }) => {
       </div>
       
       {/* Rating */}
-      <div className="mb-3">
+      <div className="review-card-rating">
         <StarRating value={review.rating} readOnly size="sm" />
       </div>
       
       {/* Review Content */}
-      <p className="text-gray-300 mb-4 whitespace-pre-line">{review.content}</p>
+      <p className="review-card-content">{review.content}</p>
       
       {/* Reaction Buttons */}
-      <div className="flex space-x-4 text-sm">
-        <button className="flex items-center text-gray-400 hover:text-white transition-colors">
-          <ThumbsUp className="h-4 w-4 mr-1" />
+      <div className="review-card-reactions">
+        <button className="review-card-reaction-btn">
+          <ThumbsUp />
           <span>Helpful</span>
         </button>
-        <button className="flex items-center text-gray-400 hover:text-white transition-colors">
-          <ThumbsDown className="h-4 w-4 mr-1" />
+        <button className="review-card-reaction-btn">
+          <ThumbsDown />
           <span>Not Helpful</span>
         </button>
       </div>

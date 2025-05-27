@@ -1,0 +1,269 @@
+.home-bg {
+  padding-top: 4rem;
+  background: #18181b;
+  min-height: 100vh;
+}
+
+.home-hero {
+  position: relative;
+  height: 70vh;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .home-hero {
+    height: 70vh;
+  }
+}
+
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.home-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  display: block;
+}
+
+.home-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #171717 0%, #17171799 60%, transparent 100%);
+}
+
+.home-hero-content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.home-hero-content {
+  max-width: 40rem;
+}
+
+.home-hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .home-hero-title {
+    font-size: 3.5rem;
+  }
+}
+
+.home-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: #d1d5db;
+  font-size: 1.1rem;
+}
+
+.home-hero-meta-dot {
+  margin: 0 0.75rem;
+  color: #6b7280;
+}
+
+.home-hero-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.home-hero-rating-value {
+  color: #facc15;
+  font-weight: bold;
+}
+
+.home-hero-rating-count {
+  color: #9ca3af;
+  margin-left: 0.25rem;
+}
+
+.home-hero-synopsis {
+  color: #d1d5db;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.home-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.home-hero-btn {
+  display: flex;
+  align-items: center;
+  background: #dc2626;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+.home-hero-btn:hover {
+  background: #b91c1c;
+}
+
+.home-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem 1rem;
+}
+
+.home-featured-section {
+  margin-bottom: 2.5rem;
+}
+
+.home-featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.home-featured-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+@media (min-width: 768px) {
+  .home-featured-title {
+    font-size: 1.5rem;
+  }
+}
+
+.home-featured-link {
+  display: flex;
+  align-items: center;
+  color: #dc2626;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  gap: 0.25rem;
+}
+.home-featured-link:hover {
+  color: #f87171;
+}
+
+.home-featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .home-featured-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.home-featured-card {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.15);
+  background: #18181b;
+}
+
+.home-featured-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home-featured-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #000 90%, transparent 100%);
+  opacity: 0.7;
+}
+
+.home-featured-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem;
+  z-index: 2;
+}
+
+.home-featured-card-title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.home-featured-card-synopsis {
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.home-featured-card-meta {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #d1d5db;
+  gap: 0.5rem;
+}
+
+.home-featured-card-meta-dot {
+  margin: 0 0.5rem;
+}
+
+.home-featured-card-rating {
+  color: #facc15;
+  font-weight: 500;
+}
+
+.home-featured-card-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  z-index: 3;
+}
+
+.home-featured-card-play:hover {
+  opacity: 1;
+}
+
+.home-featured-card-play-btn {
+  background: #dc2626;
+  border-radius: 9999px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

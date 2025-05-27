@@ -5,6 +5,7 @@ import AdminMovies from './AdminMovies';
 import AdminUsers from './AdminUsers';
 import AdminStats from './AdminStats';
 import AdminSettings from './AdminSettings';
+import './AdminDashboard.css';
 
 const AdminDashboard = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

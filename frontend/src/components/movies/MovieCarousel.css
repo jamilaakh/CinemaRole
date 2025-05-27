@@ -1,0 +1,80 @@
+.movie-carousel {
+  margin-bottom: 2.5rem;
+}
+
+.movie-carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.movie-carousel-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+@media (min-width: 768px) {
+  .movie-carousel-title {
+    font-size: 1.5rem;
+  }
+}
+
+.movie-carousel-relative {
+  position: relative;
+}
+
+.movie-carousel-group {
+  position: relative;
+}
+
+.movie-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+  padding: 0.5rem;
+  border-radius: 9999px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.movie-carousel-group:hover .movie-carousel-btn {
+  opacity: 1;
+}
+
+.movie-carousel-btn-left {
+  left: 0;
+  margin-left: -1.25rem;
+}
+
+.movie-carousel-btn-right {
+  right: 0;
+  margin-right: -1.25rem;
+}
+
+.movie-carousel-btn svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #fff;
+}
+
+.movie-carousel-overflow {
+  overflow: hidden;
+}
+
+.movie-carousel-motion {
+  display: flex;
+}
+
+.movie-carousel-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}

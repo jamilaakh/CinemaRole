@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Send, X } from 'lucide-react';
 import { useMovies } from '../../contexts/MovieContext';
 import StarRating from './StarRating';
+import './ReviewForm.css';
 
-// Removed TypeScript interface and types
 const ReviewForm = ({ 
   movieId, 
   existingReview, 
@@ -60,29 +60,29 @@ const ReviewForm = ({
 
   return (
     <motion.div 
-      className="bg-neutral-800 rounded-lg p-5 mb-6 shadow-md"
+      className="review-form"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-semibold text-white">
+      <div className="review-form-header">
+        <h3 className="review-form-title">
           {isEditing ? 'Edit Your Review' : 'Write a Review'}
         </h3>
         {onCancel && (
           <button 
             onClick={onCancel}
-            className="text-gray-400 hover:text-white p-1"
+            className="review-form-cancel-btn"
             aria-label="Cancel"
           >
-            <X className="h-5 w-5" />
+            <X style={{ height: '1.25rem', width: '1.25rem' }} />
           </button>
         )}
       </div>
       
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-300 mb-2">Your Rating</label>
+        <div className="review-form-rating">
+          <label className="review-form-label">Your Rating</label>
           <StarRating 
             value={rating} 
             onChange={setRating} 
@@ -90,8 +90,8 @@ const ReviewForm = ({
           />
         </div>
         
-        <div className="mb-4">
-          <label htmlFor="review-content" className="block text-gray-300 mb-2">
+        <div className="review-form-rating">
+          <label htmlFor="review-content" className="review-form-label">
             Your Review
           </label>
           <textarea
@@ -99,22 +99,22 @@ const ReviewForm = ({
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Share your thoughts about this title..."
-            className="w-full bg-neutral-700 text-white rounded-md p-3 min-h-32 focus:outline-none focus:ring-2 focus:ring-red-600"
+            className="review-form-textarea"
             disabled={isSubmitting}
           ></textarea>
         </div>
         
         {error && (
-          <div className="mb-4 text-red-500 text-sm">{error}</div>
+          <div className="review-form-error">{error}</div>
         )}
         
-        <div className="flex justify-end">
+        <div className="review-form-actions">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="review-form-submit-btn"
           >
-            <Send className="h-4 w-4 mr-2" />
+            <Send className="review-form-submit-icon" />
             <span>{isEditing ? 'Update Review' : 'Submit Review'}</span>
           </button>
         </div>

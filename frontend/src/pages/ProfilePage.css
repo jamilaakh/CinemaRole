@@ -1,0 +1,358 @@
+.profile-bg {
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+  min-height: 100vh;
+  background: #18181b;
+}
+
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.profile-card {
+  background: #232326;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.15);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.profile-card-inner {
+  padding: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .profile-header {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+}
+
+.profile-avatar {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 4px solid #dc2626;
+  background: #27272a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #27272a;
+}
+
+.profile-user-info {
+  flex: 1;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .profile-user-info {
+    text-align: left;
+  }
+}
+
+.profile-user-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 768px) {
+  .profile-user-name {
+    font-size: 2.25rem;
+  }
+}
+
+.profile-user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .profile-user-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.profile-user-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #9ca3af;
+}
+
+.profile-user-meta-item .profile-meta-icon {
+  color: #9ca3af;
+}
+
+.profile-user-meta-item .profile-meta-icon.star {
+  color: #facc15;
+}
+
+.profile-user-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .profile-user-actions {
+    justify-content: flex-start;
+  }
+}
+
+.profile-action-btn {
+  display: flex;
+  align-items: center;
+  background: #27272a;
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 0.5rem;
+}
+.profile-action-btn.edit:hover {
+  background: #404040;
+}
+.profile-action-btn.logout {
+  background: #dc2626;
+}
+.profile-action-btn.logout:hover {
+  background: #b91c1c;
+}
+
+.profile-tabs {
+  margin-bottom: 1.5rem;
+}
+
+.profile-tabs-row {
+  display: flex;
+  border-bottom: 1px solid #27272a;
+}
+
+.profile-tab-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  gap: 0.5rem;
+}
+.profile-tab-btn.active {
+  border-bottom: 2px solid #dc2626;
+  color: #fff;
+}
+.profile-tab-btn .profile-tab-icon.heart.active {
+  color: #dc2626;
+}
+.profile-tab-btn .profile-tab-icon.star.active {
+  color: #facc15;
+}
+.profile-tab-count {
+  margin-left: 0.5rem;
+  background: #27272a;
+  color: #d1d5db;
+  padding: 0.15rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.85em;
+}
+
+.profile-favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .profile-favorites-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .profile-favorites-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .profile-favorites-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.profile-empty-state {
+  background: #232326;
+  border-radius: 0.75rem;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #d1d5db;
+  margin-bottom: 2rem;
+}
+
+.profile-empty-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.profile-empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.profile-empty-desc {
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+.profile-empty-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #dc2626;
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 0.5rem;
+}
+.profile-empty-btn:hover {
+  background: #b91c1c;
+}
+
+.profile-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-review-card {
+  background: #232326;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+}
+
+.profile-review-row {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .profile-review-row {
+    flex-direction: row;
+  }
+}
+
+.profile-review-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  .profile-review-poster {
+    width: 25%;
+    min-width: 120px;
+    max-width: 180px;
+    aspect-ratio: auto;
+  }
+}
+
+.profile-review-content {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.profile-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.profile-review-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.profile-review-title:hover {
+  color: #dc2626;
+}
+
+.profile-review-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #facc15;
+  font-weight: 600;
+}
+
+.profile-review-text {
+  color: #d1d5db;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.profile-review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #9ca3af;
+}
+
+.profile-review-footer-btn {
+  color: #dc2626;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.profile-review-footer-btn:hover {
+  color: #f87171;
+}

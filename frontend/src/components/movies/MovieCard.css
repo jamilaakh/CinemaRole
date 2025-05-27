@@ -1,0 +1,138 @@
+.movie-card {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.15);
+  background: #18181b;
+  transition: box-shadow 0.3s;
+}
+
+.movie-card.aspect-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.movie-card.aspect-2-3 {
+  aspect-ratio: 2 / 3;
+}
+
+.movie-card-link {
+  display: block;
+  height: 100%;
+}
+
+.movie-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.movie-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  transition: opacity 0.3s;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.movie-card-overlay.featured {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+}
+
+.movie-card-overlay.hovered {
+  opacity: 1;
+}
+
+.movie-card-content {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 1rem;
+}
+
+.movie-card-title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+  .movie-card-title {
+    font-size: 1.25rem;
+  }
+}
+
+.movie-card-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
+}
+
+.movie-card-meta .movie-card-dot {
+  margin: 0 0.5rem;
+}
+
+.movie-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.movie-card-rating-value {
+  color: #fff;
+  font-weight: 500;
+}
+
+.movie-card-rating-count {
+  color: #9ca3af;
+  margin-left: 0.25rem;
+}
+
+.movie-card-genres {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  z-index: 2;
+}
+
+.movie-card-genre {
+  font-size: 0.75rem;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 0.15rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.movie-card-fav-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.movie-card-fav-btn.fav {
+  background: #dc2626;
+  color: #fff;
+}
+
+.movie-card-fav-btn:not(.fav):hover {
+  background: rgba(0,0,0,0.7);
+}

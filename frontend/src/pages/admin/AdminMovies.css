@@ -1,0 +1,222 @@
+.admin-movies-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 600px) {
+  .admin-movies-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.admin-movies-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.admin-movies-add-btn {
+  display: flex;
+  align-items: center;
+  background: #dc2626;
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 0.5rem;
+}
+.admin-movies-add-btn:hover {
+  background: #b91c1c;
+}
+
+.admin-movies-filters {
+  background: #232326;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-movies-filters-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 600px) {
+  .admin-movies-filters-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.admin-movies-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.admin-movies-search-input {
+  width: 100%;
+  background: #35353a;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.admin-movies-search-input:focus {
+  box-shadow: 0 0 0 2px #dc2626;
+}
+
+.admin-movies-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.7rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #9ca3af;
+}
+
+.admin-movies-type-select {
+  background: #35353a;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.admin-movies-type-select:focus {
+  box-shadow: 0 0 0 2px #dc2626;
+}
+
+.admin-movies-table-container {
+  background: #232326;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+}
+
+.admin-movies-table-scroll {
+  overflow-x: auto;
+}
+
+.admin-movies-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-movies-table thead tr {
+  background: #35353a;
+}
+
+.admin-movies-table th,
+.admin-movies-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.admin-movies-table th {
+  font-weight: 600;
+  color: #fff;
+}
+
+.admin-movies-table td {
+  color: #d1d5db;
+  vertical-align: middle;
+}
+
+.admin-movies-table tr {
+  border-bottom: 1px solid #35353a;
+  transition: background 0.2s;
+}
+.admin-movies-table tr:hover {
+  background: #27272a;
+}
+
+.admin-movies-row-title {
+  display: flex;
+  align-items: center;
+}
+
+.admin-movies-row-img {
+  width: 2.5rem;
+  height: 3.75rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-right: 0.75rem;
+}
+
+.admin-movies-row-title-text {
+  color: #fff;
+  font-weight: 500;
+}
+
+.admin-movies-row-type,
+.admin-movies-row-year {
+  color: #9ca3af;
+  text-transform: capitalize;
+}
+
+.admin-movies-row-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.admin-movies-row-rating-value {
+  color: #fff;
+  font-weight: 500;
+}
+
+.admin-movies-row-rating-count {
+  color: #6b7280;
+  margin-left: 0.25rem;
+}
+
+.admin-movies-row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.admin-movies-action-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1.1rem;
+}
+.admin-movies-action-btn.edit:hover {
+  color: #fff;
+}
+.admin-movies-action-btn.delete:hover {
+  color: #dc2626;
+}
+
+.admin-movies-empty-state {
+  padding: 2rem;
+  text-align: center;
+}
+.admin-movies-empty-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+.admin-movies-empty-text {
+  color: #9ca3af;
+  font-size: 1.1rem;
+}

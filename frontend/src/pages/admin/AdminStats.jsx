@@ -1,5 +1,6 @@
 import { BarChart2, TrendingUp, Users, Film, Star, Heart } from 'lucide-react';
 import { useMovies } from '../../contexts/MovieContext';
+import './AdminStats.css';
 
 const AdminStats = () => {
   const { movies, reviews, favorites } = useMovies();
@@ -23,77 +24,81 @@ const AdminStats = () => {
   
   return (
     <div>
-      <h1 className="text-2xl font-bold text-white mb-6">Dashboard Statistics</h1>
+      <h1 className="admin-stats-title">Dashboard Statistics</h1>
       
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+      <div className="admin-stats-cards">
         <StatCard 
           title="Total Users" 
           value={totalUsers} 
-          icon={<Users className="h-6 w-6 text-blue-500" />}
+          icon={<Users className="admin-stats-icon" style={{ color: '#3b82f6' }} />}
         />
         <StatCard 
           title="Total Movies" 
           value={totalMovies} 
-          icon={<Film className="h-6 w-6 text-red-500" />}
+          icon={<Film className="admin-stats-icon" style={{ color: '#dc2626' }} />}
         />
         <StatCard 
           title="Total Series" 
           value={totalSeries} 
-          icon={<Film className="h-6 w-6 text-purple-500" />}
+          icon={<Film className="admin-stats-icon" style={{ color: '#a78bfa' }} />}
         />
         <StatCard 
           title="Total Reviews" 
           value={totalReviews} 
-          icon={<Star className="h-6 w-6 text-yellow-500" />}
+          icon={<Star className="admin-stats-icon" style={{ color: '#facc15' }} />}
         />
         <StatCard 
           title="Total Favorites" 
           value={totalFavorites} 
-          icon={<Heart className="h-6 w-6 text-pink-500" />}
+          icon={<Heart className="admin-stats-icon" style={{ color: '#f472b6' }} />}
         />
         <StatCard 
           title="Avg. Rating" 
-          value={`${(movies.reduce((sum, movie) => sum + movie.rating, 0) / movies.length).toFixed(1)}`} 
-          icon={<TrendingUp className="h-6 w-6 text-green-500" />}
+          value={
+            movies.length > 0
+              ? (movies.reduce((sum, movie) => sum + movie.rating, 0) / movies.length).toFixed(1)
+              : '0.0'
+          }
+          icon={<TrendingUp className="admin-stats-icon" style={{ color: '#22c55e' }} />}
         />
       </div>
       
       {/* Top Content Tables */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="admin-stats-table-grid">
         {/* Top Rated */}
-        <div className="bg-neutral-800 rounded-lg overflow-hidden shadow-md">
-          <div className="p-4 border-b border-neutral-700">
-            <h2 className="text-lg font-semibold text-white flex items-center">
-              <Star className="h-5 w-5 text-yellow-500 mr-2" />
+        <div className="admin-stats-table-container">
+          <div className="admin-stats-table-header">
+            <h2 className="admin-stats-table-title">
+              <Star className="admin-stats-icon" style={{ color: '#facc15' }} />
               Top Rated Content
             </h2>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="admin-stats-table-scroll">
+            <table className="admin-stats-table">
               <thead>
-                <tr className="bg-neutral-750">
-                  <th className="text-left text-sm font-semibold text-white p-3">Title</th>
-                  <th className="text-right text-sm font-semibold text-white p-3">Rating</th>
+                <tr>
+                  <th>Title</th>
+                  <th style={{ textAlign: 'right' }}>Rating</th>
                 </tr>
               </thead>
               <tbody>
                 {topRated.map((movie) => (
-                  <tr key={movie.id} className="border-b border-neutral-700">
-                    <td className="p-3">
-                      <div className="flex items-center">
+                  <tr key={movie.id}>
+                    <td>
+                      <div className="admin-stats-table-movie-row">
                         <img
                           src={movie.posterUrl}
                           alt={movie.title}
-                          className="w-8 h-12 object-cover rounded mr-2"
+                          className="admin-stats-table-movie-img"
                         />
-                        <span className="text-white">{movie.title}</span>
+                        <span className="admin-stats-table-movie-title">{movie.title}</span>
                       </div>
                     </td>
-                    <td className="p-3 text-right">
-                      <div className="flex items-center justify-end">
-                        <Star className="h-4 w-4 text-yellow-500 fill-yellow-500 mr-1" />
-                        <span className="text-white font-medium">{movie.rating}</span>
+                    <td>
+                      <div className="admin-stats-table-rating">
+                        <Star className="admin-stats-table-rating-icon" />
+                        <span className="admin-stats-table-rating-value">{movie.rating}</span>
                       </div>
                     </td>
                   </tr>
@@ -104,36 +109,36 @@ const AdminStats = () => {
         </div>
         
         {/* Most Reviewed */}
-        <div className="bg-neutral-800 rounded-lg overflow-hidden shadow-md">
-          <div className="p-4 border-b border-neutral-700">
-            <h2 className="text-lg font-semibold text-white flex items-center">
-              <BarChart2 className="h-5 w-5 text-blue-500 mr-2" />
+        <div className="admin-stats-table-container">
+          <div className="admin-stats-table-header">
+            <h2 className="admin-stats-table-title">
+              <BarChart2 className="admin-stats-icon" style={{ color: '#3b82f6' }} />
               Most Reviewed Content
             </h2>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="admin-stats-table-scroll">
+            <table className="admin-stats-table">
               <thead>
-                <tr className="bg-neutral-750">
-                  <th className="text-left text-sm font-semibold text-white p-3">Title</th>
-                  <th className="text-right text-sm font-semibold text-white p-3">Reviews</th>
+                <tr>
+                  <th>Title</th>
+                  <th style={{ textAlign: 'right' }}>Reviews</th>
                 </tr>
               </thead>
               <tbody>
                 {mostReviewed.map((movie) => (
-                  <tr key={movie.id} className="border-b border-neutral-700">
-                    <td className="p-3">
-                      <div className="flex items-center">
+                  <tr key={movie.id}>
+                    <td>
+                      <div className="admin-stats-table-movie-row">
                         <img
                           src={movie.posterUrl}
                           alt={movie.title}
-                          className="w-8 h-12 object-cover rounded mr-2"
+                          className="admin-stats-table-movie-img"
                         />
-                        <span className="text-white">{movie.title}</span>
+                        <span className="admin-stats-table-movie-title">{movie.title}</span>
                       </div>
                     </td>
-                    <td className="p-3 text-right">
-                      <span className="bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full text-xs">
+                    <td>
+                      <span className="admin-stats-table-reviews-badge">
                         {movie.reviewCount} reviews
                       </span>
                     </td>
@@ -148,15 +153,14 @@ const AdminStats = () => {
   );
 };
 
-// --- JSX version: remove type annotation from props ---
 const StatCard = ({ title, value, icon }) => {
   return (
-    <div className="bg-neutral-800 rounded-lg p-6 shadow-md">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
+    <div className="admin-stats-card">
+      <div className="admin-stats-card-header">
+        <h3 className="admin-stats-card-title">{title}</h3>
         {icon}
       </div>
-      <p className="text-3xl font-bold text-white">{value}</p>
+      <p className="admin-stats-card-value">{value}</p>
     </div>
   );
 };

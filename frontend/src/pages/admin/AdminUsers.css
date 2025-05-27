@@ -1,0 +1,244 @@
+.admin-users-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .admin-users-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.admin-users-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.admin-users-add-btn {
+  display: flex;
+  align-items: center;
+  background: #dc2626;
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 0.5rem;
+}
+.admin-users-add-btn:hover {
+  background: #b91c1c;
+}
+
+.admin-users-filters {
+  background: #232326;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-users-filters-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .admin-users-filters-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.admin-users-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.admin-users-search-input {
+  width: 100%;
+  background: #35353a;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.admin-users-search-input:focus {
+  box-shadow: 0 0 0 2px #dc2626;
+}
+
+.admin-users-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.7rem;
+  height: 1.25rem;
+  width: 1.25rem;
+  color: #9ca3af;
+}
+
+.admin-users-role-select {
+  background: #35353a;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.admin-users-role-select:focus {
+  box-shadow: 0 0 0 2px #dc2626;
+}
+
+.admin-users-table-container {
+  background: #232326;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+}
+
+.admin-users-table-scroll {
+  overflow-x: auto;
+}
+
+.admin-users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-users-table thead tr {
+  background: #35353a;
+}
+
+.admin-users-table th,
+.admin-users-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.admin-users-table th {
+  font-weight: 600;
+  color: #fff;
+}
+
+.admin-users-table td {
+  color: #d1d5db;
+  vertical-align: middle;
+}
+
+.admin-users-table tr {
+  border-bottom: 1px solid #35353a;
+  transition: background 0.2s;
+}
+.admin-users-table tr:hover {
+  background: #27272a;
+}
+
+.admin-users-avatar-row {
+  display: flex;
+  align-items: center;
+}
+
+.admin-users-avatar-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  object-fit: cover;
+  margin-right: 0.75rem;
+}
+
+.admin-users-avatar-placeholder {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: #35353a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+
+.admin-users-avatar-initial {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.admin-users-current-user-badge {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  background: #35353a;
+  color: #9ca3af;
+  padding: 0.15rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.admin-users-role-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.85em;
+  font-weight: 500;
+  gap: 0.25rem;
+}
+.admin-users-role-badge.admin {
+  background: rgba(220,38,38,0.15);
+  color: #dc2626;
+}
+.admin-users-role-badge.user {
+  background: rgba(59,130,246,0.15);
+  color: #3b82f6;
+}
+
+.admin-users-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.admin-users-action-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1.1rem;
+}
+.admin-users-action-btn:disabled,
+.admin-users-action-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.admin-users-action-btn.edit:hover:not(:disabled) {
+  color: #fff;
+}
+.admin-users-action-btn.delete:hover:not(:disabled) {
+  color: #dc2626;
+}
+
+.admin-users-empty-state {
+  padding: 2rem;
+  text-align: center;
+}
+.admin-users-empty-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+.admin-users-empty-text {
+  color: #9ca3af;
+  font-size: 1.1rem;
+}
